@@ -1,6 +1,12 @@
 const UserController = {
     register: async (req, res) => {
-        res.send('register')
+        const {email, password, name} = req.body;
+
+        if (!email || !password || !name) {
+            return res.status(400).json({error: 'Все поля обязательны'})
+        }
+
+
     },
     login: async (req, res) => {
         res.send('login')
