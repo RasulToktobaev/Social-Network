@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const multer = require('multer');
-const UserController = require('../controllers')
-const authenticateToken = require('../middleware/auth')
-const {PostController} = require("../controllers");
+const UserController = require('../controllers');
+const authenticateToken = require('../middleware/auth');
+const PostController = require('../controllers');
 
 const uploadDestination = 'uploads'
 
@@ -23,6 +23,7 @@ router.post('/login', UserController.login)
 router.get('/current', authenticateToken, UserController.current)
 router.get('/user/:id', authenticateToken, UserController.getUserById)
 router.put('/users/:id', authenticateToken, UserController.updateUser)
+
 
 //Роуты постов
 router.post('/posts', authenticateToken, PostController.createPost)
