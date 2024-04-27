@@ -125,18 +125,18 @@ const UserController = {
                 })
 
                 if (existingUser && existingUser.id !== id) {
-                    return res.status(400).json({error :'Почта уже используется'})
+                    return res.status(400).json({error: 'Почта уже используется'})
                 }
             }
 
             const user = await prisma.user.update({
-                where : {id},
-                data : {
+                where: {id},
+                data: {
                     email: email || undefined,
                     name: name || undefined,
                     avatarUrl: filePath ? `/${filePath}` : undefined,
                     dateOfBirth: dateOfBirth || undefined,
-                    bio : bio || undefined,
+                    bio: bio || undefined,
                     location: location || undefined
                 }
             })
@@ -148,7 +148,34 @@ const UserController = {
         }
     },
     current: async (req, res) => {
-        res.send('current')
+        try {
+            const user = await prisma.user.findUnique({
+                where: {
+                    id: req.user.userId
+                },
+                include: {
+                    followers: {
+                        include: {
+                            follower: true
+                        }
+                    },
+                    following: {
+                        include: {
+                            following: true
+                        }
+                    }
+                }
+            })
+
+            if (!user) {
+                return res.status(400).json({error: 'Не удалось найти пользователя'})
+            }
+
+            res.json(user)
+        } catch (error) {
+            console.error('Get current error', error);
+            res.status(500).json({error: 'Internal server error'})
+        }
     },
 }
 
