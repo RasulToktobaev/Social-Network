@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const multer = require('multer');
-const UserController = require('../controllers');
+const UserController = require('../controllers/userController');
 const authenticateToken = require('../middleware/auth');
-const PostController = require('../controllers');
+const PostController = require('../controllers/postController');
 
 const uploadDestination = 'uploads'
 
