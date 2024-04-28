@@ -70,7 +70,7 @@ const PostController = {
                 }
             })
 
-            if(!post) {
+            if (!post) {
                 return res.status(404).json({error: 'Пост не найден'})
             }
 
@@ -86,7 +86,15 @@ const PostController = {
         }
     },
     deletePost: async (req, res) => {
-        res.send('deletePost')
+        const {id} = req.params;
+
+        const post = await prisma.post.findUnique({where: {id}});
+
+        if (!post) {
+            return res.status(404).json({error: 'Пост не найден'})
+        }
+
+
     }
 };
 
