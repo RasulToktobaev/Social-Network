@@ -41,7 +41,7 @@ const CommentController = {
                 return res.status(403).json({error: 'Нет доступа'});
             }
 
-            await prisma.comment.delete({where: id});
+            await prisma.comment.delete({where: {id}});
 
             res.json(comment)
         } catch (error) {
