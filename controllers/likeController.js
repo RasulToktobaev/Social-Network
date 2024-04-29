@@ -42,7 +42,7 @@ const LikeController = {
             })
 
             if (!existingLike) {
-                return res.status(400).json({error: 'Лайк уже поставлен'})
+                return res.status(400).json({error: 'Дизлайк уже поставлен'})
             }
 
             const like = await prisma.like.deleteMany({
