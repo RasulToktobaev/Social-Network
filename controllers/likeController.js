@@ -38,7 +38,7 @@ const LikeController = {
 
         try {
             const existingLike = await prisma.like.findFirst({
-                where: {postId, userId}
+                where: {postId: id, userId}
             })
 
             if (!existingLike) {
@@ -46,7 +46,7 @@ const LikeController = {
             }
 
             const like = await prisma.like.deleteMany({
-                where:{postId, id, userId}
+                where: {postId:id,  userId}
             })
 
             res.json(like)
