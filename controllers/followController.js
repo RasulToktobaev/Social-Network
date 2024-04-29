@@ -16,7 +16,7 @@ const FollowController = {
                 where: {
                     AND: [
                         {followerId: userId},
-                        {followerId}
+                        {followingId}
                     ]
                 }
             })
