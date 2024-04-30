@@ -44,19 +44,27 @@ const FollowController = {
 
         try {
             const follows = await prisma.follows.findFirst({
-                where:{
+                where: {
                     AND: [
-                        {followerId:userId},
+                        {followerId: userId},
                         {followingId}
                     ]
                 }
             })
 
-            if(!follows) {
+            if (!follows) {
                 return res.status(404).json({error: 'Вы не подписаны на данного пользователя'})
             }
-        } catch (error) {
 
+            await prisma.follows.delete({
+                where: {id: follows.id}
+            })
+
+           res.status(201).json({error: 'Вы отписались'})
+
+        } catch (error) {
+            console.error('Unfollow error', error)
+            return res.status(500).json({error: 'Упс , что то пошло не так'})
         }
     },
 }
