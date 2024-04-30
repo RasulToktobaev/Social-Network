@@ -39,7 +39,25 @@ const FollowController = {
         }
     },
     unFollowUser: async (req, res) => {
-        res.send('unFollowUser')
+        const {followingId} = req.body;
+        const userId = req.user.userId;
+
+        try {
+            const follows = await prisma.follows.findFirst({
+                where:{
+                    AND: [
+                        {followerId:userId},
+                        {followingId}
+                    ]
+                }
+            })
+
+            if(!follows) {
+                return res.status(404).json({error: 'Вы не подписаны на данного пользователя'})
+            }
+        } catch (error) {
+
+        }
     },
 }
 
