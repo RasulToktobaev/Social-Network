@@ -3,8 +3,8 @@ import logo from "./logo.svg";
 
 const App = () => {
   return (
-    <Button color="primary">
-        Button Title      
+    <Button color="primary"  >
+        Button       
     </Button>
       
   )
