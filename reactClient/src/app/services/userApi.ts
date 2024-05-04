@@ -1,9 +1,9 @@
-import { register } from "module";
+// import { register } from "module";
 import { api } from "./api";
-import { current } from "@reduxjs/toolkit";
+// import { current } from "@reduxjs/toolkit";
 import { User } from '../types'
 
-export const userAPi = api.injectEndpoints({
+export const userApi = api.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation<
             { token: string },
@@ -37,11 +37,26 @@ export const userAPi = api.injectEndpoints({
                 method: 'GET'
             })
         }),
-        updateUser: builder.mutation<User, {userData:FormData, id:string}>({
-            query: (userData, id) => ({
+        updateUser: builder.mutation<User, { userData: FormData, id: string }>({
+            query: ({userData, id}) => ({
                 url: `/users/${id}`,
                 method: 'PUT',
                 body: userData
-        
+            })
+        })
     })
 })
+
+ const {
+    useLoginMutation,
+    useRegisterMutation,
+    useCurrentQuery,
+    useGetUserByIdQuery,
+    useUpdateUserMutation,
+    useLazyCurrentQuery,
+    useLazyGetUserByIdQuery
+} = userApi;
+
+export const {
+    endpoints:{login, register,current, getUserById, updateUser}
+} = userApi
