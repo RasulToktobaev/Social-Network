@@ -30,3 +30,16 @@ export const postApi = api.injectEndpoints({
         })
     })
 })
+
+export const {
+    useCreatePostMutation,
+    useGetPostByIdQuery,
+    useDeletePostMutation,
+    useLazyGetPostByIdQuery,
+    useGetAllPostsQuery,
+    useLazyGetAllPostsQuery
+} = postApi;
+
+export const {
+    endpoints: { createPost, deletePost, getPostById, getAllPosts }
+} = postApi;
