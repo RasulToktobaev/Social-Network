@@ -1,4 +1,4 @@
-import { Post } from "@prisma/client";
+import { Post } from "../types";
 import { api } from "./api";
 
 export const postApi = api.injectEndpoints({
