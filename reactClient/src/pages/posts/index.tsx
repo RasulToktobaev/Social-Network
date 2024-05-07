@@ -1,10 +1,11 @@
 import React from 'react'
 
-export const Following = () => {
+export const Posts = () => {
   return (
     <div>
-      Following
+      Posts
     </div>
   )
 }
 
+ 

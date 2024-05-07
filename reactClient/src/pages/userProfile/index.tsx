@@ -1,10 +1,11 @@
 import React from 'react'
 
-export const Following = () => {
+export const userProfile = () => {
   return (
     <div>
-      Following
+      userProfile
     </div>
   )
 }
+
 
