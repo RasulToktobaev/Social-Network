@@ -1,5 +1,7 @@
-import { Button } from '@nextui-org/react';
+import { Link } from 'react-router-dom';
+import { Button } from '../button';
 import React from 'react'
+
 
 type Props = {
     children : React.ReactNode;
@@ -13,8 +15,10 @@ type Props = {
     href
  }) => {
   return (
-    <Button className='flex justify-start text-xl' icon>
-
+    <Button className='flex justify-start text-xl' icon={icon}>
+        <Link to={href}>
+            {children}
+        </Link>
     </Button>
   )
 }
