@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Button } from '../button';
 import React from 'react'
+import { Button2 } from '../button';
 
 
 type Props = {
@@ -15,11 +15,11 @@ type Props = {
     href
  }) => {
   return (
-    <Button className='flex justify-start text-xl' icon={icon}>
+    <Button2 className='flex justify-start text-xl' icon={icon}>
         <Link to={href}>
             {children}
         </Link>
-    </Button>
+    </Button2>
   )
 }
 
