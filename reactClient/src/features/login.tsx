@@ -1,11 +1,13 @@
 import React from 'react'
 
-const login = () => {
+type Props = {
+    setSelected:(value: string) => void;
+}
+
+export const Login = () => {
   return (
     <div>
-      
+      Login
     </div>
   )
 }
-
-export default login

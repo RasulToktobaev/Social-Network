@@ -40,7 +40,12 @@ export const Input: React.FC<Props> = (
             label={label}
             placeholder={placeholder}
             type={type}
-            value
+            value={field.value}
+            name={field.name}
+            onChange={field.onChange}
+            isInvalid={invalid}
+            onBlur={field.onBlur}
+            errorMessage={`${errors[name]?.message ?? ''}`}
         />
     )
 }
