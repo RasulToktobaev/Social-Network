@@ -1,6 +1,7 @@
 import { Input as NextInput } from '@nextui-org/react';
 import React from 'react'
 import { useController } from 'react-hook-form';
+import { Control } from'react-hook-form';
 
 type Props = {
     name: string;
@@ -25,6 +26,7 @@ export const Input: React.FC<Props> = (
 ) => {
 
     const {
+        field,
         fieldState: { invalid },
         formState: { errors }
     } = useController({
