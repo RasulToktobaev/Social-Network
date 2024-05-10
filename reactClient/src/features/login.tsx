@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Input } from '../components/input';
 import { Button, Link } from '@nextui-org/react';
+import { useCurrentQuery, useLazyCurrentQuery, useLoginMutation } from '../app/services/userApi';
+import { useNavigate } from 'react-router-dom';
 
 type Login = {
     email: string;
@@ -28,8 +30,21 @@ export const Login: React.FC<Props> = () => {
             password: ''
         }
     });
+
+    const [login, { isLoading }] = useLoginMutation();
+    const navigate = useNavigate();
+    const [error, setError] = useState('');
+    const [triggerCurrentQuery] = useLazyCurrentQuery();
+
+    const onSubmit = async (data: Login) => {
+        try {
+            await login(data).unwrap();
+        } catch (err) {
+
+        }
+    }
     return (
-        <form className='flex flex-col gap-4'>
+        <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
             <Input
                 control={control}
                 name='email'
@@ -56,7 +71,7 @@ export const Login: React.FC<Props> = () => {
                 </Link>
             </p>
             <div className="flex gap-2 justify-end">
-                <Button fullWidth color='primary' type='submit'>
+                <Button fullWidth color='primary' type='submit' isLoading={isLoading}>
                     Войти
                 </Button>
             </div>
