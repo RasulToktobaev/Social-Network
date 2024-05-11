@@ -47,7 +47,7 @@ export const userApi = api.injectEndpoints({
     })
 })
 
- const {
+  export const {
     useLoginMutation,
     useRegisterMutation,
     useCurrentQuery,
