@@ -1,8 +1,9 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Input } from '../components/input';
 import { Button, Link } from '@nextui-org/react';
+import { useRegisterMutation } from '../app/services/userApi';
+import { hasErrorField } from '../utils/hasErrorFields';
 
 type Register = {
     email: string;
@@ -14,7 +15,7 @@ type Props = {
     setSelected: (value: string) => void;
 }
 
-export const Register:React.FC<Props> = ({
+export const Register: React.FC<Props> = ({
     setSelected
 }) => {
 
@@ -34,15 +35,28 @@ export const Register:React.FC<Props> = ({
         }
     })
 
+    const [register, {isLoading}] = useRegisterMutation();
+    const [error, setError] = useState('');
+
     const onSubmit = async (data: Register) => {
         try {
-            
+            await register(data).unwrap();
+            setSelected('login');
         } catch (err) {
-
+            if(hasErrorField(err)){
+                setError(err.data.error);
+            }
         }
     }
-  return (
-    <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
+    return (
+        <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
+            <Input
+                control={control}
+                name='name'
+                label='Имя'
+                type='text'
+                required='Обязательное поле'
+            />
             <Input
                 control={control}
                 name='email'
@@ -59,13 +73,13 @@ export const Register:React.FC<Props> = ({
             />
 
             <p className="text-center text-small">
-                Нет аккаунта?{" "}
+                Уже есть аккаунт?{" "}
                 <Link
                     size='sm'
                     className='cursor-pointer'
-                    onPress={() => setSelected("sign-up")}
+                    onPress={() => setSelected("login")}
                 >
-                    Зарегистрируйтесь
+                    Войдите
                 </Link>
             </p>
             <div className="flex gap-2 justify-end">
@@ -74,5 +88,5 @@ export const Register:React.FC<Props> = ({
                 </Button>
             </div>
         </form>
-  )
+    )
 }
