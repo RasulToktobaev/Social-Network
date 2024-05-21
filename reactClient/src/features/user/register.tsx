@@ -87,4 +87,7 @@ export const Register = ({ setSelected }: Props) => {
     </form>
   )
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 90c58ad81bc20ea339376b71918e5d385f1dbcf4

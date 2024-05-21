@@ -40,7 +40,11 @@ export const Login = ({ setSelected }: Props) => {
 
   const onSubmit = async (data: Login) => {
     try {
+<<<<<<< HEAD
       await login(data).unwrap();
+=======
+      await login(data).unwrap()
+>>>>>>> 90c58ad81bc20ea339376b71918e5d385f1dbcf4
       await triggerCurrentQuery()
       navigate("/")
     } catch (err) {
