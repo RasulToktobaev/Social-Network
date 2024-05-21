@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-import { Card, CardBody, Tabs, Tab } from '@nextui-org/react'
-import React, { useState } from 'react'
-import { Login } from '../../features/login'
-=======
 import { Card, CardBody, Tab, Tabs } from "@nextui-org/react"
 import { useState } from "react"
 import { Login } from "../../features/user/login"
 import { Register } from "../../features/user/register"
 import { useAuthGuard } from "../../hooks/useAuthGuard"
->>>>>>> 90c58ad81bc20ea339376b71918e5d385f1dbcf4
 
 export const Auth = () => {
   const [selected, setSelected] = useState("login")
@@ -29,13 +23,8 @@ export const Auth = () => {
               <Tab key="login" title="Вход">
                 <Login setSelected={setSelected} />
               </Tab>
-<<<<<<< HEAD
-              <Tab key='sign-up' title='Регистрация'>
-                Регистрация
-=======
               <Tab key="sign-up" title="Регистрация">
                 <Register setSelected={setSelected} />
->>>>>>> 90c58ad81bc20ea339376b71918e5d385f1dbcf4
               </Tab>
             </Tabs>
           </CardBody>
